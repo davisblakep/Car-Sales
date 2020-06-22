@@ -19,8 +19,16 @@ export const initialState = {
 
 export const vehicleReducer = (state = initialState, action) => {
     switch(action.type){
-
-
+        case "TOGGLE_ADD":
+            // return {
+            //     ...state,
+            //     additionalPrice: action.payload
+            // }
+            return {
+                ...state, 
+                additionalFeatures: state.additionalFeatures.filter(item => 
+                    item.id === action.payload ? state - item : item)
+            }
         default: 
             return state;
     }
