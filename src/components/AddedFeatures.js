@@ -1,15 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 import AddedFeature from './AddedFeature';
 
 const AddedFeatures = props => {
+  console.log("Added feature props", props)
   return (
     <div className="content">
       <h6>Added features:</h6>
-      {props.car.features.length ? (
+      {props.featuresOnProps.length ? (
         <ol type="1">
-          {props.car.features.map(item => (
-            <AddedFeature key={item.id} feature={item} />
+          {props.featuresOnProps.map(item => (
+           item.added === true && <AddedFeature key={item.id} feature={item} />
           ))}
         </ol>
       ) : (
@@ -19,4 +21,10 @@ const AddedFeatures = props => {
   );
 };
 
-export default AddedFeatures;
+const mapStateToProps = state => {
+  return{
+    featuresOnProps: state.additionalFeatures,
+  }
+}
+
+export default connect(mapStateToProps)(AddedFeatures);
