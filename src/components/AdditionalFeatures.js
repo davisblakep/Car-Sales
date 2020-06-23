@@ -5,14 +5,13 @@ import AdditionalFeature from './AdditionalFeature';
 
 
 const AdditionalFeatures = props => {
-  console.log("Additional Features props after adding items", props)
   return (
     <div className="content">
       <h4>Additional Features</h4>
       {props.additionalFeaturesOnProps.length ? (
         <ol type="1">
           {props.additionalFeaturesOnProps.map(item => (
-            <AdditionalFeature key={item.id} feature={item} />
+            item.added === false && <AdditionalFeature key={item.id} feature={item} />
           ))}
         </ol>
       ) : (
